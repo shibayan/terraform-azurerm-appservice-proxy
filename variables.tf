@@ -3,7 +3,7 @@ variable "web_app_name" {
   description = "The name of the Web App to create."
 }
 
-variable "app_service_plan_id" {
+variable "service_plan_id" {
   type        = string
   description = "The resource id of the App Service Plan."
 }
