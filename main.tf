@@ -11,6 +11,10 @@ resource "azurerm_windows_web_app" "webapp" {
     application_stack {
       dotnet_version = "v6.0"
     }
+
+    ftps_state              = "Disabled"
+    minimum_tls_version     = "1.2"
+    scm_minimum_tls_version = "1.2"
   }
 }
 
