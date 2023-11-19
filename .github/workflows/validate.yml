@@ -6,20 +6,15 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  TERRAFORM_VERSION: 1.2.6
-
 jobs:
   validate:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Setup terraform ${{ env.TERRAFORM_VERSION }}
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: ${{ env.TERRAFORM_VERSION }}
+    - name: Setup terraform CLI
+      uses: hashicorp/setup-terraform@v3
 
     - name: terraform fmt
       run: terraform fmt -check
@@ -28,4 +23,4 @@ jobs:
       run: terraform init
 
     - name: terraform validate
-      run: terraform validate
+      run: terraform validate -no-color

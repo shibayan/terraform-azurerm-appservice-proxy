@@ -19,7 +19,7 @@ resource "azurerm_service_plan" "default" {
   location            = azurerm_resource_group.default.location
 
   os_type  = "Windows"
-  sku_name = "P1v2"
+  sku_name = "P0v3"
 }
 
 module "appservice_proxy" {
@@ -27,7 +27,7 @@ module "appservice_proxy" {
   version = "~> 2.0"
 
   web_app_name        = "app-proxy-module"
-  app_service_plan_id = azurerm_service_plan.default.id
+  service_plan_id     = azurerm_service_plan.default.id
   resource_group_name = azurerm_resource_group.default.name
   location            = azurerm_resource_group.default.location
 }
