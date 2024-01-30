@@ -9,7 +9,7 @@ resource "azurerm_windows_web_app" "webapp" {
 
   site_config {
     application_stack {
-      dotnet_version = "v6.0"
+      dotnet_version = "v8.0"
     }
 
     ftps_state              = "Disabled"
@@ -44,9 +44,9 @@ resource "azurerm_resource_group_template_deployment" "siteextension" {
   },
   "resources": [
     {
-      "apiVersion": "2020-12-01",
-      "name": "[concat(parameters('webAppName'), '/AppServiceProxy.SiteExtension')]",
-      "type": "Microsoft.Web/sites/siteextensions"
+      "type": "Microsoft.Web/sites/siteextensions",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/{1}', variables('webAppName'), 'AppServiceProxy.SiteExtension')]"
     }
   ]
 }
